@@ -1,6 +1,6 @@
 http:
   hostname: ""
-  port: 8000
+  port: 8001
   readTimeout: "5s"
   writeTimeout: "10s"
   idleTimeout: "2m"

@@ -1,2 +1,5 @@
 .idea
-dbs
+dbs/pagoda
+/pagoda
+/web
+/dbs
