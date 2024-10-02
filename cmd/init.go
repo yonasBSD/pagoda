@@ -1,12 +1,14 @@
-/*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
-
-*/
 package cmd
 
 import (
+  "os"
+  _ "embed"
+
 	"github.com/spf13/cobra"
 )
+
+//go:embed config/config.yaml
+var config string
 
 // initCmd represents the init command
 var initCmd = &cobra.Command{
@@ -19,11 +21,19 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-    /*
-		echo "
+    target := "config"
 
-    " > config.yaml
-    */
+    if args.len == 1 {
+      target = args[1]
+    }
+
+    if err := os.Mkdir(target, os.ModePerm); err != nil {
+      log.Fatal(err)
+    }
+
+    if err := os.WriteFile(target, "/config.yaml", config, 0666); err != nil {
+        log.Fatal(err)
+    }
 	},
 }
 
